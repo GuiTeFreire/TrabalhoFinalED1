@@ -14,5 +14,9 @@ public class Ponto {
     public double getY() {
         return y;
     }
+    public String toString() {
+        return "(" + this.getX() + ", " + this.getY() + ")";
+    }
+
 
 }

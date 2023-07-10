@@ -2,17 +2,20 @@ public class Cluster implements Comparable<Cluster> {
     public Ponto ponto;
     private Cluster filhoEsq;
     private Cluster filhoDir;
+    public Arvbin<Cluster> arvore;
 
     public Cluster(Ponto ponto) {
         this.ponto = ponto;
         this.filhoEsq = null;
         this.filhoDir = null;
+        this.arvore = new Arvbin<>(this);
     }
 
     public Cluster(Cluster filhoEsq, Cluster filhoDir) {
         this.ponto = calcularMedia(filhoEsq.getPonto(), filhoDir.getPonto());
         this.filhoEsq = filhoEsq;
         this.filhoDir = filhoDir;
+        this.arvore = new Arvbin<>(this,  filhoEsq.arvore, filhoDir.arvore);
     }
 
     public Ponto getPonto() {
@@ -49,6 +52,11 @@ public class Cluster implements Comparable<Cluster> {
             return 1;
         }else
             return -1;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + this.ponto.getX() + ", " + this.ponto.getY() + ")";
     }
 }
 

@@ -8,34 +8,39 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        int tamanho = 5;
+        int tamanho = 10;
         Ponto[] pontos = gerarPontosAleatorios(tamanho);
-        Arvbin<Cluster>[] arvoreClusters = new Arvbin[pontos.length];
-
-        double somaX = 0, somaY = 0;
 
         //Passa os pontos para um vetor de Clusters
         Cluster[] clusters = new Cluster[pontos.length];
         for (int i = 0; i < pontos.length; i++) {
             clusters[i] = new Cluster(pontos[i]);
-            arvoreClusters[i] = new Arvbin<>(clusters[i]);
-            somaX += pontos[i].getX();
-            somaY += pontos[i].getY();
         }
-        double mediaX = somaX / pontos.length;
-        double mediaY = somaY / pontos.length;
-        Ponto centroideFinal = new Ponto(mediaX, mediaY);
+
+        //Tira o tempo inicial
+        long tempoIni = System.currentTimeMillis();
 
         System.out.println("Pontos Iniciais: ");
         for (int i = 0; i < pontos.length; i++) {
-            System.out.print("(" + pontos[i].getX() + ", " + pontos[i].getY() + ")");
+            System.out.println(pontos[i]);
         }
 
+        //Calculo do Cluster Resultante (Naive)
         Cluster clusterFinal = clusterizarNaive(clusters);
+
+        //Calculo do Cluster Resultante (Fila de Prioridade)
+        //Cluster clusterFinal = clusterizarFilaPrioridade(clusters);
+
         System.out.println("\nCluster Final: ");
         System.out.print("(" + clusterFinal.getPonto().getX() + ", " + clusterFinal.getPonto().getY() + ")");
-        System.out.println("\nCentroide Final: ");
-        System.out.print("(" + centroideFinal.getX() + ", " + centroideFinal.getY() + ")");
+
+        //Calculo do tempo de execução
+        long tempoFim = System.currentTimeMillis();
+        long duracao = tempoFim - tempoIni;
+        System.out.println("\nTempo total de execucao: " + duracao + " milissegundos");
+
+        //Árvore de Clusters
+        clusterFinal.arvore.imprimeEmOrdem();
     }
 
     //Encontrar a menor distância entre 2 Clusters do vetor
