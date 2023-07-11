@@ -1,5 +1,5 @@
 public class FilaDePrioridade{
-    private int n;
+    public int n;
     private int tam;
     public DistanciaEntreClusters[] vetor;
 
@@ -175,5 +175,22 @@ public class FilaDePrioridade{
 
     public int getTam() {
         return tam;
+    }
+
+    public void removerDistancias(Cluster c1, Cluster c2) {
+        DistanciaEntreClusters[] novoVetor = new DistanciaEntreClusters[tam + 1];
+        int novoN = 0;
+
+        for (int i = 1; i <= n; i++) {
+            DistanciaEntreClusters distancia = vetor[i];
+            if (distancia.getC1() != c1 && distancia.getC1() != c2 &&
+                    distancia.getC2() != c1 && distancia.getC2() != c2) {
+                novoN++;
+                novoVetor[novoN] = distancia;
+            }
+        }
+
+        vetor = novoVetor;
+        n = novoN;
     }
 }

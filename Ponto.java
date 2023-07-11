@@ -18,5 +18,4 @@ public class Ponto {
         return "(" + this.getX() + ", " + this.getY() + ")";
     }
 
-
 }
