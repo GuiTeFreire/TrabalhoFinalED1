@@ -135,26 +135,6 @@ public class FilaDePrioridade{
         vetor[pos] = x;
     }
 
-    public void insere(DistanciaEntreClusters[] distancias) {
-        if (tam - n < distancias.length) {
-            System.out.println("Fila de prioridades cheia!");
-            return;
-        }
-
-        for (DistanciaEntreClusters distancia : distancias) {
-            n++;
-            int pos = n;
-            vetor[0] = distancia;
-
-            while (distancia.compareTo(vetor[pos/2]) < 0) {
-                vetor[pos] = vetor[pos/2];
-                pos /= 2;
-            }
-
-            vetor[pos] = distancia;
-        }
-    }
-
     public void heapsort()
     {
         DistanciaEntreClusters x;

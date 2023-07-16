@@ -26,16 +26,8 @@ public class Cluster implements Comparable<Cluster> {
         return filhoEsq;
     }
 
-    public void setFilhoEsq(Cluster filhoEsquerda) {
-        this.filhoEsq = filhoEsq;
-    }
-
     public Cluster getFilhoDir() {
         return filhoDir;
-    }
-
-    public void setFilhoDir(Cluster filhoDir) {
-        this.filhoDir = filhoDir;
     }
 
     public Ponto calcularMedia(Ponto p1, Ponto p2) {

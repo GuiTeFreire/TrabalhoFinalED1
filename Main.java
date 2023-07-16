@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        int tamanho = 10;
+        int tamanho = 20000;
         Ponto[] pontos = gerarPontosAleatorios(tamanho);
 
         //Passa os pontos para um vetor de Clusters
@@ -19,11 +19,6 @@ public class Main {
 
         //Tira o tempo inicial
         long tempoIni = System.currentTimeMillis();
-
-        System.out.println("Pontos Iniciais: ");
-        for (int i = 0; i < pontos.length; i++) {
-            System.out.println(pontos[i]);
-        }
 
         //Calculo do Cluster Resultante (Naive)
         //Cluster clusterFinal = clusterizarNaive(clusters);
@@ -40,7 +35,7 @@ public class Main {
         System.out.println("\nTempo total de execucao: " + duracao + " milissegundos");
 
         //Árvore de Clusters
-        clusterFinal.arvore.imprimeEmOrdem();
+        //clusterFinal.arvore.imprimeEmOrdem();
     }
 
     //Encontrar a menor distância entre 2 Clusters do vetor
@@ -85,7 +80,7 @@ public class Main {
     //Encontrar o Cluster final (Naive)
     private static Cluster clusterizarNaive(Cluster[] clusters) {
        while (clusters.length > 1) {
-           // Obter a menor distância da fila de prioridade
+           // Obter a menor distância entre os clusters iniciais
             DistanciaEntreClusters menorDistancia = encontrarMenorDistancia(clusters);
 
            // Criar um novo cluster a partir dos dois clusters mais próximos
@@ -148,6 +143,5 @@ public class Main {
 
         return pontos;
     }
-
 
 }
