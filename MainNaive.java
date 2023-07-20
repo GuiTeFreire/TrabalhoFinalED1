@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class MainNaive {
     public static void main(String[] args) {
-        int tamanho = 20000;
+        int tamanho = 10;
         Ponto[] pontos = gerarPontosAleatorios(tamanho);
 
         //Passa os pontos para um vetor de Clusters
